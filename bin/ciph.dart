@@ -5,10 +5,8 @@ import 'package:ciph/ciph.dart';
 import 'package:ciph/hc_vault.dart';
 import 'package:pointycastle/pointycastle.dart';
 
-const token =
-    'hvs.CAESIAgUzXev9uetzQocCstgFPS-MC_Flskv_2a8Rqs2eOlZGh4KHGh2cy50VDh3UFhJQXA3U0s4N0dFaFowanN0OE8';
-const baseUrl =
-    'https://vault.malipopopote.solutions:8200'; //'https://127.0.0.1:8200';
+const token = '';
+const baseUrl = ''; //'https://127.0.0.1:8200';
 
 final vault = HCVault(baseUrl: baseUrl, token: token);
 
