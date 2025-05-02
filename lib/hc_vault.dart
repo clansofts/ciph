@@ -181,11 +181,11 @@ class HCVault {
         final res = await response.stream.bytesToString();
         // print('$res\n');
         final r = KeyBackupResponse.fromJson(json.decode(res));
-        print('Backup Data: ${r.data?.backup}\n');
+        // print('Backup Data: ${r.data?.backup}\n');
         final backupInfo = utf8.decode(base64.decode(r.data!.backup!));
 
         final kI = HCKeyInfoResponse.fromJson(json.decode(backupInfo));
-        print('Backup Data Extracted: ${kI.policy?.toJson()}\n');
+        // print('Backup Data Extracted: ${kI.policy?.toJson()}\n');
         // print('Vault Key Backup Response: ${r.toJson()}\n');
         return '${kI.policy?.keys?.the1?.key}';
       } else {

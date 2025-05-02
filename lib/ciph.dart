@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 import 'package:pointycastle/export.dart';
 
@@ -45,7 +46,20 @@ class Ciph {
     return output;
   }
 
-  // --- AES-GCM Decryption (Unchanged) ---
+  static Uint8List deriveDeterministicIv({required Uint8List masterKey}) {
+    // Create a 12-byte IV = 96 bits since AES256-GCM96 uses 96-bit IVs using HKDF-SHA256
+    // with the master key as input key and info as context
+    // The salt is set to null (empty) in this case
+    // and the IV length is set to 12 bytes (96 bits)
+    return hkdfSha256(
+      inputKey: masterKey,
+      salt: utf8.encode("IV-Salt"),
+      info: utf8.encode("AES-GCM-IV"),
+      outputLength: 12, // 12 bytes IV
+    );
+  }
+
+  // --- AES-GCM Decryption  ---
   static Uint8List aesGcmDecrypt({
     required Uint8List key,
     required Uint8List iv,
